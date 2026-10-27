@@ -36,16 +36,77 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmController = TextEditingController();
 
+void _passwordTip(){
+  showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      title: const Text('Password Tip',),
+      content: const Text('Use a combination of letters and numbers to make a strong password. \nDon\'t share it.\nPasswords less than 6 characters are invalid, try the above method to make your password.\nNote: not actual AI output.',
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(dialogContext), 
+        child: const Text('OK'),
+        ),
+      ],
+    )
+  );
+}
+
+void _nameTip(){
+  showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      title: const Text('Name Tip',),
+      content: const Text('Try using a name that you want admins and other users to see. \nName field can not be empty.\nNote: not actual AI output',
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(dialogContext), 
+        child: const Text('OK'),
+        ),
+      ],
+    )
+  );
+}
+
+void _emailTip(){
+  showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      title: const Text('Email Tip',),
+      content: const Text('Enter an email that you have access to. Must use \'@\' symbol.\nNote: not actual AI output.',
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(dialogContext), 
+        child: const Text('OK'),
+        ),
+      ],
+    )
+  );
+}
+
   void _signUpTip() {
     showDialog<void>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Tip!'),
+        title: const Text('Tips!'),
         content: const Text(
-          'Use a combination of letters and numbers to make a strong password. \nDon\'t share it.\nPasswords less than 6 characters are invalid, try the above method to make your password.',
+          'Select a tip option. Press \'OK\' to close this window.',
         ),
+        actionsAlignment: MainAxisAlignment.center,
         actions: [
-          TextButton(
+          ElevatedButton(
+            onPressed: _nameTip,
+            child: const Text('Name Tip'),
+          ),
+          ElevatedButton(
+            onPressed: _emailTip,
+            child: const Text('Email Tip'),
+          ),
+          ElevatedButton(
+            onPressed: _passwordTip,
+            child: const Text('Password Tip'),
+          ),
+          ElevatedButton(
             onPressed: () => Navigator.pop(dialogContext),
             child: const Text('OK'),
           ),
